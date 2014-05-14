@@ -1,6 +1,27 @@
 import praw
 import time
 
+def getInfo(phrase):
+    comment = []
+    if phrase.lower() == "index":
+        with open("./index.txt") as info:
+            comment.append(info.read() + "  \n")
+    else:
+        try:
+            with open("./pages/" + phrase.lower() + ".txt") as info:
+                comment.append("**Information about " + phrase + "**  \n")
+                comment.append(info.read() + "  \n")
+        except IOError:
+            try:
+                with open("./index.txt") as info:
+                    comment.append("**Could not find " + phrase + " - Listing all pages**  \n")
+                    comment.append(info.read() + "  \n")
+            except IOError:
+                print("ERROR: NO index.txt FOUND")
+            
+    comment.append("*Information from DogeHelpBot. More info at /r/DogeHelpBot*")
+    return comment
+    
 def parse(comment):
     w = comment.body.split()
     match = ["dogehelpbot", "helpbot"]
@@ -19,8 +40,27 @@ def parse(comment):
             pass
 
         if command.lower() == "explain":
-            comment.reply("Test 4")
+            print("Matches Command: Explain")
             
+            try:
+                topic = w[nxt + 1]
+            except IndexError:
+                topic = "Index"
+                
+            reply = ""
+            
+            for line in getInfo(topic):
+                reply = reply + line
+                
+            comment.reply(reply)
+        elif command.lower() == "introduction" or command.lower() == "index":
+            print("Matches Command: Intro/Index")
+            reply = ""
+            
+            for line in getInfo("Index"):
+                reply = reply + line
+                
+            comment.reply(reply)
     
 def main():
     r = praw.Reddit(user_agent = "DogeHelpBot - Provides information about Dogecoin on request")
@@ -57,13 +97,14 @@ def main():
         comments = sreddits.get_comments()
         for c in comments:
             if c.id not in done:
+                print("Parsing " + c.id)
                 parse(c)
                 done.insert(0, c.id)
 
         with open("./dealtwith.txt", "w") as f:
             count = 0
             for item in done:
-                if count == 25:
+                if count == 50:
                     break
                 f.write(item + "\n")
                 count = count + 1
