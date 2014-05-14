@@ -1,4 +1,5 @@
 import praw
+import time
 
 def parse(comment):
     w = comment.body.split()
@@ -9,7 +10,7 @@ def parse(comment):
         if word.lower() in match:
             nxt = count + 1
             break
-        count++
+        count += 1
         
     if not nxt == 0:
         try:
@@ -18,46 +19,55 @@ def parse(comment):
             pass
 
         if command.lower() == "explain":
-            #Explain
+            comment.reply("Test 4")
             
     
 def main():
     r = praw.Reddit(user_agent = "DogeHelpBot - Provides information about Dogecoin on request")
 
     done = []
-    for i in range(25):
-        done.append(False)
+        
     user = ""
     passwrd = ""
     subreddits = ""
 
 
-    with f as open("./dealtwith.txt"):
+    with open("./dealtwith.txt") as f:
         for line in f:
-            done.append(line)
+            done.append(line.strip())
 
-    with f as open("./credentials.txt"):
+    with open("./credentials.txt") as f:
         search = 0
         for line in f:
             if search == 0:
-                user = line
+                user = line.strip()
                 search = 1
             else:
-                passwrd = line
+                passwrd = line.strip()
                 break
 
-    with f as open("./subreddits.txt"):
+    with open("./subreddits.txt") as f:
         for line in f:
-            subreddits = subreddits + "+" + line
+            subreddits = subreddits + "+" + line.strip()
 
     r.login(user, passwrd)
 
     while True:
         sreddits = r.get_subreddit(subreddits)
-        comments = subreddit.get_comments()
-        flatc = praw.helpers.flatten_tree(comments)
-        for c in flatc:
+        comments = sreddits.get_comments()
+        for c in comments:
             if c.id not in done:
                 parse(c)
-    
+                done.insert(0, c.id)
+
+        with open("./dealtwith.txt", "w") as f:
+            count = 0
+            for item in done:
+                if count == 25:
+                    break
+                f.write(item + "\n")
+                count = count + 1
+                
+        time.sleep(8)
+
 main()
