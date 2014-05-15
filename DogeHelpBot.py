@@ -1,34 +1,54 @@
 import praw
 import time
 
+pagemap = {}
+
+def getFromAlias(phrase):
+    for key in pagemap.keys():
+        for alias in pagemap[key]:
+            if alias.lower() == phrase.lower():
+                return key
+
+    return "FALSE"
+    
+def getIntro():
+    comment = []
+    try:
+        with open("./pages/intro.txt") as f:
+            comment.append(f.read() + "  \n")
+    except IOError:
+        print("ERROR: NO intro.txt FOUND")
+    comment.append("  \n")
+    for item in pagemap.keys():
+        comment.append("* " + item + "\n")
+    comment.append("\n")
+    return comment
+    
 def getInfo(phrase):
     comment = []
     if phrase.lower() == "index":
-        with open("./index.txt") as info:
-            comment.append(info.read() + "  \n")
+        comment = getIntro()
     elif phrase.lower() == "dictionary":
         comment.append("**Dictionary of Dogecoin**  \n")
-        with open("./index.txt") as info:
+        with open("./pages/dictionary.txt") as info:
             comment.append(info.read() + "  \n")
     else:
         try:
-            with open("./pages/" + phrase.lower() + ".txt") as info:
+            with open("./pages/" + getFromAlias(phrase).lower() + ".txt") as info:
                 comment.append("**Information about " + phrase + "**  \n")
+                comment.append("  \n") 
                 comment.append(info.read() + "  \n")
-        except IOError:
-            try:
-                with open("./index.txt") as info:
-                    comment.append("**Could not find " + phrase + " - Listing all pages**  \n")
-                    comment.append(info.read() + "  \n")
-            except IOError:
-                print("ERROR: NO index.txt FOUND")
-    comment.append("\n  ")       
+        except:
+                comment.append("**Could not find " + phrase + " - Listing all pages**  \n")
+                comment = comment + getIntro()
+
+    comment.append("  \n")       
     comment.append("*Information from DogeHelpBot. More info at /r/DogeHelpBot*")
     return comment
     
 def parse(comment):
     w = comment.body.split()
-    match = ["dogehelpbot", "helpbot"]
+    match = ["dogehelpbot", "helpbot", "/u/dogehelpbot", "+/u/dogehelpbot"]
     count = 0
     nxt = 0
     for word in w:
@@ -104,6 +124,24 @@ def main():
             for line in f:
                 subreddits = subreddits + "+" + line.strip()
 
+        print("READING INDEX...")
+        curval = ""
+        aliases = []
+        with open("./index.txt") as f:
+            for line in f:
+                if line[0] == "-":
+                    aliases.append(line[1:].strip())
+                    print("ADDING ALIAS " + line[1:].strip().lower() + " TO " + curval)
+                else:
+                    if not curval == "":
+                        pagemap[curval] = aliases
+                    curval = line.strip()
+                    aliases = [curval.strip()]
+                    print("PAGE: " + line.strip())
+
+            if not curval == "":
+                pagemap[curval] = aliases
+            
         r.login(user, passwrd)
 
         while True:
