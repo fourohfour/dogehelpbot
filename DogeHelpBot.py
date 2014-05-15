@@ -14,10 +14,10 @@ def getFromAlias(phrase):
 def getIntro():
     comment = []
     try:
-        with open("./pages/intro.txt") as f:
+        with open("./pages/intro.md") as f:
             comment.append(f.read() + "  \n")
     except IOError:
-        print("ERROR: NO intro.txt FOUND")
+        print("ERROR: NO intro.md FOUND")
     comment.append("  \n")
     for item in pagemap.keys():
         comment.append("* " + item + "\n")
@@ -30,11 +30,11 @@ def getInfo(phrase):
         comment = getIntro()
     elif phrase.lower() == "dictionary":
         comment.append("**Dictionary of Dogecoin**  \n")
-        with open("./pages/dictionary.txt") as info:
+        with open("./pages/dictionary.md") as info:
             comment.append(info.read() + "  \n")
     else:
         try:
-            with open("./pages/" + getFromAlias(phrase).lower() + ".txt") as info:
+            with open("./pages/" + getFromAlias(phrase).lower() + ".md") as info:
                 comment.append("**Information about " + phrase + "**  \n")
                 comment.append("  \n") 
                 comment.append(info.read() + "  \n")
