@@ -112,5 +112,5 @@ def main():
                     count = count + 1
                     
             time.sleep(8)
-        except:
-            main()
+    except:
+        main()
