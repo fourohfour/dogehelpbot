@@ -114,3 +114,4 @@ def main():
             time.sleep(8)
     except:
         main()
+main()
