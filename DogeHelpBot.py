@@ -6,6 +6,10 @@ def getInfo(phrase):
     if phrase.lower() == "index":
         with open("./index.txt") as info:
             comment.append(info.read() + "  \n")
+    elif phrase.lower() == "dictionary":
+        comment.append("**Dictionary of Dogecoin**  \n")
+        with open("./index.txt") as info:
+            comment.append(info.read() + "  \n")
     else:
         try:
             with open("./pages/" + phrase.lower() + ".txt") as info:
@@ -58,6 +62,15 @@ def parse(comment):
             reply = ""
             
             for line in getInfo("Index"):
+                reply = reply + line
+                
+            comment.reply(reply)
+            
+        elif command.lower() == "dictionary":
+            print("Matches Command: Dictionary")
+            reply = ""
+            
+            for line in getInfo("Dictionary"):
                 reply = reply + line
                 
             comment.reply(reply)
