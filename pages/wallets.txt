@@ -1,1 +1,1 @@
-Placeholder for wallets
+Wallets are where dogecoins are stored. Wallets can be online or offline, although offline ones are seen as more secure and less vunerable to attack.
