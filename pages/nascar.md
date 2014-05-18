@@ -4,5 +4,8 @@ This raised great publicity for dogecoin and was one of the largest crowd-fundin
 
 Phil Parsons racing, who Wise races for, offered to run the so called dogecar for free in the Sprint Cup Fan Race if dogecoin fans could vote enough to get Wise to beat hot favorite Danica Patrick.
 
-You can vote [here](http://nascar.com/SprintFanVote)!
-The results of the vote will be announced on May 17th 
+The dogecoin fans did it and voted the underdog racer above all others, even Patrick. Wise will now compete in the Sprint Showdown race in full dogecoin livery!
+
+WE DID IT GUYS! WE DID IT! WE DID IT!
+
+TO THE MOOOOOOON!!!!!!!!!!

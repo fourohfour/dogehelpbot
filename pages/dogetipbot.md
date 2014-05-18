@@ -7,3 +7,5 @@ When you get your first tip to dogetipbot, you will need to send a PM to /u/doge
 Sending a message saying +history in the message body shows your balance, transaction history, and dogetipbot wallet adress if you need to top up your tip account.
 
 It is recommended that you only keep a small amount of doge in your tipbot account as it is vunerable to attack. The command '+withdraw ADRESS AMOUNT doge' is useful to move funds to an offline wallet (*-> Wallets*)
+
+dogetipbot quick commands: [+history](http://www.reddit.com/message/compose?to=dogetipbot&subject=history&message=%2Bhistory) [+withdraw](http://www.reddit.com/message/compose?to=dogetipbot&subject=withdraw&message=%2Bwithdraw%20ADDRESS%20AMOUNT%20doge)

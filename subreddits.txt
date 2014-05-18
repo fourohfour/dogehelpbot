@@ -1,2 +1,4 @@
 TestingFourtyTwo
+
 DogeHelpBot
+Dogecoin
