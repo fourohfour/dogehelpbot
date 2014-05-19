@@ -97,7 +97,7 @@ def readCommand(comment, nxt, w, r):
                 
                 for line in getInfo("Subreddits"):
                     reply = reply + line
-
+            
         except IndexError:
             for line in getInfo("Index"):
                 reply = reply + line

@@ -6,6 +6,6 @@ Phil Parsons racing, who Wise races for, offered to run the so called dogecar fo
 
 The dogecoin fans did it and voted the underdog racer above all others, even Patrick. Wise will now compete in the Sprint Showdown race in full dogecoin livery!
 
-WE DID IT GUYS! WE DID IT! WE DID IT!
+In the race, Wise managed to finish a very respectable 15th, beating several well known drivers.
 
-TO THE MOOOOOOON!!!!!!!!!!
+Wise will race again in the dogecar if enough team T-Shirts are brought. 

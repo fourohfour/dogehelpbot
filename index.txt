@@ -18,3 +18,11 @@ NASCAR
 -98
 -talledega
 -vote
+Trading
+-buy
+-buying
+-steam
+-games
+-trade
+-trader
+-purchase
