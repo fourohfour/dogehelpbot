@@ -52,7 +52,7 @@ def getInfo(phrase):
     comment.append("*Information from DogeHelpBot. Want to contribute or get more info? Go to /r/DogeHelpBot*")
     return comment
 
-def readCommand(comment, nxt, w):
+def readCommand(comment, nxt, w, r):
     if not nxt == 0:
         print("Found Applicable Comment: " + comment.id)
         print("Body: " + str(w[nxt - 1 :nxt + 2]))
@@ -60,50 +60,72 @@ def readCommand(comment, nxt, w):
         try:
             command = w[nxt]
         except IndexError:
-            pass
+            return
 
-        if command.lower() == "explain" or command.lower() == "help":
-            print("Matches Command: Explain / Help")
-            
+        redir = False
+        if command.lower() == "@op" or command.lower() == "op":
+            redir = True
+            nxt = nxt + 1
             try:
-                topic = w[nxt + 1]
+                command = w[nxt]
             except IndexError:
-                topic = "Index"
+                print("Redir OP: No Command Found")
+
+        reply = ""
+        try:
+            if command.lower() == "explain" or command.lower() == "help":
+                print("Matches Command: Explain / Help")
+                topic = w[nxt + 1]
                 
-            reply = ""
-            
-            for line in getInfo(topic):
-                reply = reply + line
+                for line in getInfo(topic):
+                    reply = reply + line
+                    
+            elif command.lower() == "introduction" or command.lower() == "index":
+                print("Matches Command: Intro/Index")
                 
-            comment.reply(reply)
-        elif command.lower() == "introduction" or command.lower() == "index":
-            print("Matches Command: Intro/Index")
-            reply = ""
-            
+                for line in getInfo("Index"):
+                    reply = reply + line
+                
+            elif command.lower() == "dictionary":
+                print("Matches Command: Dictionary")
+                
+                for line in getInfo("Dictionary"):
+                    reply = reply + line
+
+            elif command.lower() == "subreddits":
+                print("Matches Command: Subreddits")
+                
+                for line in getInfo("Subreddits"):
+                    reply = reply + line
+
+        except IndexError:
             for line in getInfo("Index"):
                 reply = reply + line
-                
-            comment.reply(reply)
-            
-        elif command.lower() == "dictionary":
-            print("Matches Command: Dictionary")
-            reply = ""
-            
-            for line in getInfo("Dictionary"):
+        
+        if reply == "":
+            for line in getInfo("Index"):
                 reply = reply + line
-                
-            comment.reply(reply)
             
-        elif command.lower() == "subreddits":
-            print("Matches Command: Subreddits")
-            reply = ""
-            
-            for line in getInfo("Subreddits"):
-                reply = reply + line
-                
+        if not redir:
             comment.reply(reply)
+        else:
+            reply = reply +"  \n**/u/" +  comment.author.name + " directed this information at you.**"
+            op = ""
+            if comment.is_root:
+                opsub = comment.submission
+                op = opsub.author.name
+                newcomment = opsub.add_comment(reply)
+            else:
+                opcomment = r.get_info(thing_id=comment.parent_id)
+                op = opcomment.author.name
+                newcomment = opcomment.reply(reply)
 
-def parse(comment):
+            if op == None:
+                op = "[deleted]"
+            
+            comment.reply("Directed information at /u/" + op + ". See the comment [here](" + newcomment.permalink + ").")
+
+def parse(comment, r):
     w = comment.body.split()
     match = ["dogehelpbot", "helpbot", "/u/dogehelpbot", "+/u/dogehelpbot"]
     count = 0
@@ -111,7 +133,7 @@ def parse(comment):
     for word in w:
         if word.lower() in match:
             nxt = count + 1
-            readCommand(comment, nxt, w)
+            readCommand(comment, nxt, w, r)
         count += 1
         
     
@@ -171,7 +193,7 @@ def main():
             for c in comments:
                 if c.id not in done:
                     if not c.author.name == "DogeHelpBot":
-                        parse(c)
+                        parse(c, r)
                     done.insert(0, c.id)
 
             with open("./dealtwith.txt", "w") as f:
@@ -183,7 +205,7 @@ def main():
                     count = count + 1
                     
             time.sleep(8)
-    except urllib.errors.HTTPError as e:
+    except urllib.error.HTTPError as e:
         print("HTTPError Code: " + str(e.code) + " - retrying in [60] seconds.")
         time.sleep(60)
         main()
