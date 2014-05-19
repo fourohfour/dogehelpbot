@@ -183,7 +183,7 @@ def main():
                     count = count + 1
                     
             time.sleep(8)
-    except urllib.errors.HTTPError as e:
+    except urllib.error.HTTPError as e:
         print("HTTPError Code: " + str(e.code) + " - retrying in [60] seconds.")
         time.sleep(60)
         main()
