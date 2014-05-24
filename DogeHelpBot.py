@@ -37,6 +37,10 @@ def getInfo(phrase):
         comment.append("**Dogecoin Related Subreddits**  \n")
         with open("./pages/dogesubs.md") as info:
             comment.append(info.read() + "  \n")
+    elif phrase.lower() == "exchanges":
+        comment.append("**Dogecoin Exchanges**  \n")
+        with open("./pages/exchanges.md") as info:
+            comment.append(info.read() + "  \n")
     else:
         try:
             with open("./pages/" + getFromAlias(phrase).lower() + ".md") as info:
@@ -96,6 +100,11 @@ def readCommand(comment, nxt, w, r):
                 print("Matches Command: Subreddits")
                 
                 for line in getInfo("Subreddits"):
+                    reply = reply + line
+            elif command.lower() == "exchanges":
+                print("Matches Command: Exchanges")
+                
+                for line in getInfo("exchanges"):
                     reply = reply + line
             
         except IndexError:
