@@ -10,6 +10,16 @@ OR
 Buy it in a while (~24-72 hrs) with ~1% fee!
 
 
+**All Countries**
+
+Instant Purchase – almost unlimited amounts (~8-15% over current price)
+
+* [WeSellDoges](http://www.weselldoges.com/)
+* [Dogeforsale](http://www.dogeforsale.com/?utm_source=reddit-dogecoin&utm_medium=banner&utm_campaign=wikilink)
+* [LocalDogecoin](https://www.localdogecoin.com/)
+* [DogesNearMe](http://www.DogesNearMe.com)
+
+
 **USD**
 
 Instant Purchase (~8% over current price)
@@ -60,6 +70,7 @@ Exchange Purchase (Delayed ~24-72hrs with ~1% fee)
 Exchange Purchase (Delayed ~24-72hrs with ~1% fee)
 
 * [ANXPRO](https://anxpro.com/)
+* [CoinSpot](https://www.coinspot.com.au/trade/doge) (WBC)
 
 Instant Purchase (~8% over current price)
 
@@ -86,15 +97,6 @@ Exchange Purchase (Delayed ~24-72hrs with ~1% fee)
 
 * [ANXPRO](https://anxpro.com/)
 
-
-**All Countries**
-
-Instant Purchase – almost unlimited amounts (~8-15% over current price)
-
-* [WeSellDoges](http://www.weselldoges.com/)
-* [Dogeforsale](http://www.dogeforsale.com/?utm_source=reddit-dogecoin&utm_medium=banner&utm_campaign=wikilink)
-* [LocalDogecoin](https://www.localdogecoin.com/)
-* [DogesNearMe](http://www.DogesNearMe.com)
 
 Person-to-Person Trades
 

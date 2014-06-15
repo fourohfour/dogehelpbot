@@ -218,6 +218,10 @@ def main():
         print("HTTPError Code: " + str(e.code) + " - retrying in [60] seconds.")
         time.sleep(60)
         main()
+    except:
+        print("Crap")
+        time.sleep(60)
+        main()
 
 if __name__ == "__main__":
     main()

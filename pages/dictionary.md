@@ -9,6 +9,8 @@ If you see an italicised arrow followed by a key term (ex. *-> NASCAR*) then it 
 
 * **1 Doge = 1 Doge** - Phrase used to show disregard at doge's price compared to USD or other currencys and treat it as what it is. See [this webpage](http://priceofdoge.com/).
 
+* **FUD** - 'Fear, Uncertainty and Doubt': A type of post which promotes these bad feelings amoung the community, and against the /r/dogecoin rules. [More Info](http://www.reddit.com/r/dogecoin/wiki/fud).
+
 * **Hashrate** - Speed at which a mining machine performs calculations. Machines with a higher hashrate will get more doge. *See Mining*
 
 * **Josh Wise** - NASCAR Driver who was sponsered by the community for a race at the Talledega speedway. *->  NASCAR*

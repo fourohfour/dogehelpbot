@@ -3,7 +3,8 @@ Make a comment saying:
 
     dogehelpbot explain [Subject]  
 
-where [Subject] is an item from the list below to learn more. Alternatively, check in the dogecoin dictionary with the command:  
+where [Subject] is an item from the list below to learn more (Without square brackets). Alternatively, check in the dogecoin dictionary with the command:  
 
     dogehelpbot dictionary  
+	
 	

@@ -12,6 +12,7 @@ DogeTipBot
 -Tip
 -Tips
 -Tipping
+-Mohland
 NASCAR
 -JoshWise
 -Josh_Wise
